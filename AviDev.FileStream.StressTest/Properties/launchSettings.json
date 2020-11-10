@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AviDev.FileStream.StressTest": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

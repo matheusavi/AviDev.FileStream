@@ -19,12 +19,6 @@ namespace AviDev.FileStream
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<File>>> Get()
-        {
-            return await _context.File.ToListAsync();
-        }
-
         [HttpGet("{id}")]
         public async Task<ActionResult<File>> Get(int id)
         {
@@ -36,35 +30,6 @@ namespace AviDev.FileStream
             }
 
             return file;
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, File file)
-        {
-            if (id != file.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(file).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FileExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         [HttpPost]

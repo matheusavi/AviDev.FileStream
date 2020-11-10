@@ -38,8 +38,6 @@ namespace AviDev.FileStream
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();

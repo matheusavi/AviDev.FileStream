@@ -6,6 +6,12 @@ services:
     build:
       context: .
       dockerfile: AviDev.FileStream/Dockerfile
+    container_name: avidevfilestream
+    networks:
+      - backend
+    ports:
+      - 50045:80
+
   postgresql:
     image: postgres:latest
     environment:
@@ -18,6 +24,8 @@ services:
     restart: always
     volumes:
      - ./postgres-data:/var/lib/postgresql/data 
+    networks:
+      - backend
 
   pgadmin4:
     image: dpage/pgadmin4:latest
@@ -29,3 +37,9 @@ services:
     ports:
       - 8003:80
     restart: always
+    networks:
+      - backend
+
+networks:
+    backend:
+        driver: bridge
